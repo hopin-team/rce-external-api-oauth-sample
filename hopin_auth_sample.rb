@@ -13,9 +13,10 @@ use Rack::Session::Pool, expire_after: 10_000
 APP_ID       = ENV['HOPIN_APP_ID']
 APP_SECRET   = ENV['HOPIN_APP_SECRET']
 CALLBACK     = url_encode(ENV['HOPIN_CALLBACK_URL']) # This must match exactly the callback url that hopin has on file for this app.
-PLATFORM_URI = 'https://hopin.com/'
-API_URI = 'https://api.hopin.com/'
-SCOPES = 'api'
+PLATFORM_URI = ENV.fetch("HOPIN_PLATFORM_DOMAIN", "https://hopin.com/")
+API_URI      =  ENV.fetch("HOPIN_API_DOMAIN", "https://api.hopin.com/")
+SCOPES       = 'api'
+RESOURCE     = url_encode(ENV['HOPIN_RESOURCE_URI'])
 
 get '/' do
   erb :index
@@ -23,7 +24,7 @@ end
 
 get '/auth' do
   state = (0...50).map { ('a'..'z').to_a[rand(26)] }.join
-  redirect to("#{PLATFORM_URI}/oauth/authorize?&redirect_uri=#{CALLBACK}&client_id=#{APP_ID}&scope=#{SCOPES}&state=#{state}&response_type=code")
+  redirect to("#{PLATFORM_URI}/oauth/authorize?&redirect_uri=#{CALLBACK}&client_id=#{APP_ID}&scope=#{SCOPES}&state=#{state}&response_type=code&resource=#{RESOURCE}")
 end
 
 get '/auth/hopin/callback' do
@@ -37,7 +38,7 @@ get '/auth/hopin/callback' do
   else
     # Exchange our new auth code for an access_token. You'll notice it has a "expires_at" attribute. When this time elapses
     # the access_token will no longer work. You should use the refresh token to get a new pair of refresh/access tokens in that case.
-    response = RestClient.post "#{PLATFORM_URI}oauth/token?grant_type=authorization_code&code=#{auth_code}&redirect_uri=#{CALLBACK}&client_id=#{APP_ID}&client_secret=#{APP_SECRET}", {},
+    response = RestClient.post "#{PLATFORM_URI}oauth/token?grant_type=authorization_code&code=#{auth_code}&redirect_uri=#{CALLBACK}&client_id=#{APP_ID}&client_secret=#{APP_SECRET}&resource=#{RESOURCE}", {},
                                { Accept: 'application/json' }
     token_details = JSON.parse(response.body)
 
