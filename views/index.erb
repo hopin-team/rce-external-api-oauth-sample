@@ -5,8 +5,14 @@
     <title>Hopin OAuth Flow Example</title>
   </head>
   <body class='container'>
-    <form action='auth' method='get'>
-      <button type='submit' class='btn btn-primary'>Log in with Hopin</button>
-    </form>
-  </body>
-</html>
+    <% if cookies[:resource] %>
+      <form action='auth' method='get'>
+        <button type='submit' class='btn btn-primary'>Log in with Hopin</button>
+      </form>
+
+      <small>(using the RI: <%= cookies[:resource] %>)
+      <%else%>
+        Please install at the Hopin App Store
+      <%end%>
+    </body>
+  </html>
