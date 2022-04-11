@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8' />
+    <title>Hopin OAuth Flow Example</title>
+  </head>
+  <body class='container'>
+    <h2>Sign-Up Accepted By User</h2>
+    <h3>token Details:</h3>
+    <ul>
+      <% token_details.each_pair do |k,v| %>
+        <li><b><%= k %>: </b> <span style="word-wrap: break-word;"><%= v %></span></li>
+      <% end %>
+    </ul>
+
+    <h3>API response</h3>
+    <ul>
+      <% api_response.each_pair do |k,v| %>
+        <li><b><%= k %>: </b> <span style="word-wrap: break-word;"><%= v %></span></li>
+      <% end %>
+    </ul>
+
+  </body>
+</html>
