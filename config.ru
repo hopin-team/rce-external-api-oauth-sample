@@ -3,5 +3,5 @@ require "bundler/setup"
 
 Bundler.require
 
-require './hopin_auth_sample'
+require './oauth_sample'
 run Sinatra::Application
