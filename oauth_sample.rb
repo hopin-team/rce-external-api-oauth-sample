@@ -12,11 +12,11 @@ include ERB::Util
 
 use Rack::Session::Pool, expire_after: 10_000
 
-APP_ID       = ENV['HOPIN_APP_ID']
-APP_SECRET   = ENV['HOPIN_APP_SECRET']
-CALLBACK     = url_encode(ENV['HOPIN_CALLBACK_URL']) # This must match exactly the callback url that hopin has on file for this app.
-PLATFORM_URI = ENV.fetch("HOPIN_PLATFORM_DOMAIN", "https://hopin.com/")
-API_URI      = ENV.fetch("HOPIN_API_DOMAIN", "https://api.hopin.com/")
+APP_ID       = ENV['RCE_APP_ID']
+APP_SECRET   = ENV['RCE_APP_SECRET']
+CALLBACK     = url_encode(ENV['RCE_CALLBACK_URL']) # This must match exactly the callback url that RingCentral Events has on file for this app.
+PLATFORM_URI = ENV.fetch("RCE_PLATFORM_DOMAIN", "https://events.ringcentral.com/")
+API_URI      = ENV.fetch("RCE_API_DOMAIN", "https://api.events.ringcentral.com/")
 SCOPES       = 'api'
 
 get '/' do
@@ -28,7 +28,7 @@ get '/auth' do
   redirect to("#{PLATFORM_URI}/oauth/authorize?&redirect_uri=#{CALLBACK}&client_id=#{APP_ID}&scope=#{SCOPES}&state=#{state}&response_type=code&resource=#{cookies[:resource]}")
 end
 
-get '/auth/hopin/callback' do
+get '/auth/callback' do
   auth_code = params['code']
   csrf_code = params['state'] # You should verify this matches the state we generated in the first stage.
   error     = params['error']
