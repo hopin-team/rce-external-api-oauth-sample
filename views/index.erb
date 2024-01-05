@@ -2,17 +2,17 @@
 <html>
   <head>
     <meta charset='UTF-8' />
-    <title>Hopin OAuth Flow Example</title>
+    <title>RingCentral Events OAuth Flow Example</title>
   </head>
   <body class='container'>
     <% if cookies[:resource] %>
       <form action='auth' method='get'>
-        <button type='submit' class='btn btn-primary'>Log in with Hopin</button>
+        <button type='submit' class='btn btn-primary'>Log in with RingCentral Events</button>
       </form>
 
       <small>(using the RI: <%= cookies[:resource] %>)
       <%else%>
-        Please install at the Hopin App Store
+        Please install at the RingCentral Events App Store
       <%end%>
     </body>
   </html>
