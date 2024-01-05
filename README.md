@@ -1,6 +1,6 @@
-# Hopin Example Oauth
+# RingCentral Events API - OAuth Example
 
-This very small app demonstrates a simple oauth authentication flow for Hopin, allowing calling apps to access the API.
+This very small app demonstrates a simple OAuth authentication flow for RingCentral Events, allowing calling apps to access the API.
 
 ## Installing
 
