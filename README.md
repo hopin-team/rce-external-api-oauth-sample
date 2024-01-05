@@ -15,12 +15,12 @@ bundle
 ## Running
 
 Run the script with the following environment variables set:
- - HOPIN_CALLBACK_URL
- - HOPIN_APP_ID
- - HOPIN_APP_SECRET
+ - RCE_CALLBACK_URL
+ - RCE_APP_ID
+ - RCE_APP_SECRET
 
 ```bash
-HOPIN_CALLBACK_URL=http://localhost:3000/auth/hopin/callback HOPIN_APP_ID={your client id} HOPIN_APP_SECRET={your app secret} bundle exec rackup -p3000
+RCE_CALLBACK_URL=http://localhost:3000/auth/hopin/callback RCE_APP_ID={your client id} RCE_APP_SECRET={your app secret} bundle exec rackup -p3000
 ```
 
 ## Thanks
