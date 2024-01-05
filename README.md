@@ -20,7 +20,7 @@ Run the script with the following environment variables set:
  - RCE_APP_SECRET
 
 ```bash
-RCE_CALLBACK_URL=http://localhost:3000/auth/hopin/callback RCE_APP_ID={your client id} RCE_APP_SECRET={your app secret} bundle exec rackup -p3000
+RCE_CALLBACK_URL=http://localhost:3000/auth/callback RCE_APP_ID={your client id} RCE_APP_SECRET={your app secret} bundle exec rackup -p3000
 ```
 
 ## Thanks
